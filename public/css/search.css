@@ -1,0 +1,16 @@
+.search_page {
+    background: none !important;
+}
+
+.search_page .wrapper {
+    top: 18% !important;
+}
+
+#divSearch_table {
+    margin-top: 8em;
+    padding: 2em;
+}
+
+.navlinks > a {
+    color: black;
+}

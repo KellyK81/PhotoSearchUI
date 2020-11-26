@@ -18,4 +18,17 @@ class Authenticate extends Middleware
             return route('login');
         }
     }
+
+    public function handle($request, Closure $next, $guard = null)
+    {
+        // if the session does not have 'authenticated' forget the user and redirect to login
+        if ($request->session()->get('authenticated',false)) {
+            return $next($request);
+        }
+        
+        $request->session()->forget('authenticated');
+        $request->session()->forget('user_token');
+        $request->session()->forget('user');
+        return redirect()->action("ApiAuthController@showLoginForm");
+    }
 }

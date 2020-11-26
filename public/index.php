@@ -45,11 +45,11 @@ require __DIR__.'/../vendor/autoload.php';
 */
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
-
+$app->alias('request', 'App\Http\Requests\AuthenticationRequest');
 $kernel = $app->make(Kernel::class);
 
 $response = tap($kernel->handle(
-    $request = Request::capture()
+    $request = App\Http\Requests\AuthenticationRequest::capture()
 ))->send();
 
 $kernel->terminate($request, $response);
